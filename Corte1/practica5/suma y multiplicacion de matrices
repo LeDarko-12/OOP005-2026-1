@@ -1,0 +1,91 @@
+package matriz2p2;
+
+import java.util.Scanner;
+
+public class Matriz2p2 {
+
+    public int[][] data;
+    public int filas;
+    public int columnas;
+
+    public Matriz2p2() {
+        filas = 2;
+        columnas = 2;
+        data = new int[filas][columnas];
+    }
+
+    public void cargar() {
+        Scanner sc = new Scanner(System.in);
+
+        for (int i = 0; i < filas; i++) {
+            for (int j = 0; j < columnas; j++) {
+                System.out.print("data[" + i + "][" + j + "]: ");
+                data[i][j] = sc.nextInt();
+            }
+        }
+    }
+
+    public void imprimir() {
+        System.out.println("\nMatriz 2x2:");
+
+        for (int i = 0; i < filas; i++) {
+            for (int j = 0; j < columnas; j++) {
+                System.out.print(data[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    public Matriz2p2 sumar(Matriz2p2 otra) {
+        Matriz2p2 resultado = new Matriz2p2();
+
+        for (int i = 0; i < filas; i++) {
+            for (int j = 0; j < columnas; j++) {
+                resultado.data[i][j] = this.data[i][j] + otra.data[i][j];
+            }
+        }
+
+        return resultado;
+    }
+    public Matriz2p2 multiplicar ( Matriz2p2 otra ) {
+
+ Matriz2p2 resultado = new Matriz2p2 ();
+
+ for (int i = 0; i < filas ; i ++) {
+
+ for (int j = 0; j < columnas ; j ++) {
+
+ resultado . data [i][j] = 0;
+
+ for (int k = 0; k < columnas ; k ++) {
+
+ resultado . data [i][j] =
+ resultado . data [i][j] +
+ this . data [i][k] * otra . data [k][j];
+
+ }
+ }
+ }
+
+ return resultado ;
+ }
+
+    public static void main(String[] args) {
+
+        Matriz2p2 m1 = new Matriz2p2();
+        Matriz2p2 m2 = new Matriz2p2();
+
+        System.out.println("llenar matriz 1");
+        m1.cargar();
+
+        System.out.println("\nllenar matriz 2");
+        m2.cargar();
+
+        Matriz2p2 resultado = m1.sumar(m2);
+        Matriz2p2 resultado2 = m1.multiplicar(m2);
+        System.out.println("\nResultado de la suma:");
+        resultado.imprimir();
+        System.out.println("\nResultado de la multiplicacion: ");
+        resultado2.imprimir();
+    }
+}
